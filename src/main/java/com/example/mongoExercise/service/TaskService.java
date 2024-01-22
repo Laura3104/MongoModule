@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -48,21 +47,21 @@ public class TaskService {
                 .stream()
                 .flatMap
                         (task -> task.getSubTasks().stream())
-                .collect(Collectors.toList());
+                .toList();
         for (SubTask subTask : subTasks) {
             System.out.println(subTask);
         }
     }
 
     public void createTask(){
-        taskRepository.save(generateTask());
-        System.out.println(generateTask());
+        Task task = taskRepository.save(generateTask());
+        System.out.println(task);
     }
 
     public void updateTask(String id){
         generateTaskToUpdate().setId(id);
-        taskRepository.save(generateTaskToUpdate());
-        System.out.println(generateTaskToUpdate());
+        Task task = taskRepository.save(generateTaskToUpdate());
+        System.out.println(task);
     }
 
     public void deleteTaskById(String id){
