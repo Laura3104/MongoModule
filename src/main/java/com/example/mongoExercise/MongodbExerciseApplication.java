@@ -1,6 +1,7 @@
 package com.example.mongoExercise;
 
 import com.example.mongoExercise.service.TaskService;
+import com.example.mongoExercise.service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +11,13 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class MongodbExerciseApplication implements CommandLineRunner {
-    @Autowired
-	private TaskService taskService;
+
+	private final TaskService taskService;
+
+	@Autowired
+	public MongodbExerciseApplication(TaskService taskService) {
+		this.taskService = taskService;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MongodbExerciseApplication.class, args);
